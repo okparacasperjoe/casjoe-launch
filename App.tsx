@@ -3,11 +3,11 @@ import CountdownTimer from './components/CountdownTimer';
 import PaymentModal from './components/PaymentModal';
 
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; value: string }> = ({ icon, title, description, value }) => (
-  <div className="bg-[#010175] p-6 rounded-xl shadow-lg hover:shadow-[#ffa600]/20 transform hover:-translate-y-1 transition-all duration-300 border border-[#ffa600]/20">
+  <div className="bg-[#010175] p-6 rounded-xl shadow-lg hover:shadow-[#ffa600]/20 transform hover:-translate-y-1 transition-all duration-300 border border-[#ffa600]/20 hover:border-[#ffa600]/40 group">
     <div className="flex items-center space-x-4">
       <div className="bg-[#000066] p-3 rounded-full">{icon}</div>
       <div>
-        <h4 className="text-lg font-bold text-white">{title}</h4>
+        <h4 className="text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#ffa600]">{title}</h4>
         <p className="text-sm text-gray-300">{description}</p>
       </div>
     </div>
@@ -16,12 +16,12 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
 );
 
 const BenefitItem: React.FC<{ icon: React.ReactNode; title: string; description: string }> = ({ icon, title, description }) => (
-    <div className="flex items-start space-x-4">
-        <div className="flex-shrink-0 bg-[#010175] p-3 rounded-full text-[#ffa600]">
+    <div className="flex items-start space-x-4 p-4 rounded-lg transition-all duration-300 hover:bg-[#010175]/50 group cursor-pointer">
+        <div className="flex-shrink-0 bg-[#010175] p-3 rounded-full text-[#ffa600] transition-colors duration-300 group-hover:bg-[#ffa600] group-hover:text-[#000066]">
             {icon}
         </div>
         <div>
-            <h4 className="text-xl font-bold text-white">{title}</h4>
+            <h4 className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-[#ffa600]">{title}</h4>
             <p className="mt-1 text-gray-300">{description}</p>
         </div>
     </div>
@@ -30,6 +30,7 @@ const BenefitItem: React.FC<{ icon: React.ReactNode; title: string; description:
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
   const targetDate = "2025-12-07T23:59:59";
 
   const shareUrl = encodeURIComponent('https://casjoe.com/founders-offer');
@@ -56,6 +57,18 @@ const App: React.FC = () => {
       { title: "All-in-one ecosystem", description: "Everything integrated seamlessly to power your business.", icon: <CpuChipIcon /> },
       { title: "Founding user community", description: "Join an exclusive network of early adopters.", icon: <UsersIcon /> },
   ];
+
+  const handleCopyLink = () => {
+    const linkToCopy = 'https://casjoe.com/founders-offer';
+    navigator.clipboard.writeText(linkToCopy).then(() => {
+      setIsLinkCopied(true);
+      setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy link: ', err);
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#000066] text-white font-sans">
@@ -139,6 +152,18 @@ const App: React.FC = () => {
               <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&summary=${shareTextLinkedIn}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" className="inline-block bg-[#010175] p-3 rounded-full text-gray-300 hover:text-white transition-colors duration-300 hover:bg-[#0A66C2]">
                 <LinkedInIcon />
               </a>
+              <button
+                onClick={handleCopyLink}
+                disabled={isLinkCopied}
+                aria-label={isLinkCopied ? 'Link Copied!' : 'Copy Link'}
+                className={`inline-block p-3 rounded-full transition-all duration-300 ${
+                  isLinkCopied
+                    ? 'bg-green-500 text-white'
+                    : 'bg-[#010175] text-gray-300 hover:text-white hover:bg-[#33349E]'
+                }`}
+              >
+                {isLinkCopied ? <CheckIcon /> : <ClipboardIcon />}
+              </button>
             </div>
           </div>
         </header>
@@ -330,6 +355,19 @@ const LinkedInIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
     <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-4.484 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
   </svg>
+);
+
+// --- Utility Icons ---
+const ClipboardIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+    </svg>
+);
+
+const CheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+    </svg>
 );
 
 
