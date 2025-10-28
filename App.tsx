@@ -75,72 +75,73 @@ const App: React.FC = () => {
       <PaymentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Event Hero Section */}
-        <section id="event-hero" className="py-16 md:py-24 text-center">
+        {/* New Hero Section */}
+        <section id="hero" className="py-16 md:py-24 text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-                You're Invited to the
+                Join the Movement:
             </h1>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#ffa600] mt-2">
-                Casjoe Virtual Product Launch
+                Unveiling Casjoe's Future
             </h2>
-            <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-200">
-                Join us as we unveil the future of business tools and celebrate our official launch.
+            <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-200">
+                We're launching an all-in-one business toolkit, offering a lifetime deal for early supporters, and inviting sponsors to partner with us on our journey.
             </p>
-            <div className="mt-8 inline-block bg-[#010175] border border-[#ffa600]/30 rounded-2xl p-8 md:p-10 shadow-xl">
-                 <div className="flex flex-col md:flex-row justify-center items-center gap-y-6 gap-x-12 text-lg">
-                    <div className="flex items-center gap-3">
-                      <EventCalendarIcon />
-                      <span className="font-semibold">Sunday, 7th December 2025</span>
+
+            <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+                {/* Pillar 1: Virtual Launch */}
+                <div className="bg-[#010175] border border-[#ffa600]/30 rounded-2xl p-8 shadow-xl flex flex-col hover:border-[#ffa600]/50 hover:shadow-[#ffa600]/20 transition-all duration-300">
+                    <div className="flex-shrink-0"><EventCalendarIcon /></div>
+                    <h3 className="text-2xl font-bold text-white mt-4">Virtual Product Launch</h3>
+                    <p className="text-gray-300 mt-2 flex-grow">Be the first to see our powerful suite of business tools in action.</p>
+                    <div className="text-gray-200 mt-4 space-y-2">
+                        <p className="flex items-center gap-2"><ClockIcon small /><span>Sunday, 7th Dec 2025 | 4:00 PM</span></p>
+                        <p className="flex items-center gap-2"><ZoomIcon small /><span>Live on Zoom</span></p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <ClockIcon />
-                      <span className="font-semibold">4:00 PM</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <ZoomIcon />
-                      <span className="font-semibold">Live on Zoom</span>
-                    </div>
-                 </div>
-            </div>
-            <div className="mt-10">
-                <a
-                  href="https://luma.com/xxghk9dr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#ffa600] hover:bg-[#ffb733] text-[#000066] font-bold py-4 px-10 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-[#ffa600]/30"
-                >
-                  Register for Event
-                </a>
+                    <a
+                      href="https://luma.com/xxghk9dr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 block text-center bg-[#ffa600] hover:bg-[#ffb733] text-[#000066] font-bold py-3 px-6 rounded-lg text-lg transition duration-300 transform hover:scale-105"
+                    >
+                      Register for Event
+                    </a>
+                </div>
+
+                {/* Pillar 2: Founder's Offer */}
+                <div className="bg-[#010175] border-2 border-[#ffa600] rounded-2xl p-8 shadow-2xl shadow-[#ffa600]/30 flex flex-col ring-4 ring-[#ffa600]/20">
+                    <div className="flex-shrink-0"><SparklesIcon large /></div>
+                    <h3 className="text-2xl font-bold text-white mt-4">Exclusive Founder's Offer</h3>
+                    <p className="text-gray-300 mt-2 flex-grow">Get <span className="font-bold text-[#ffa600]">lifetime access</span> to tools worth over ₦1M for a one-time payment.</p>
+                    <p className="text-4xl font-bold text-white mt-4">₦100,000 <span className="text-2xl text-gray-400 font-medium">or $70</span></p>
+                    <button 
+                      onClick={() => setIsModalOpen(true)}
+                      className="mt-6 block w-full text-center bg-[#ffa600] hover:bg-[#ffb733] text-[#000066] font-bold py-3 px-6 rounded-lg text-lg transition duration-300 transform hover:scale-105">
+                      Claim Offer Now
+                    </button>
+                </div>
+
+                {/* Pillar 3: Sponsorship */}
+                <div className="bg-[#010175] border border-[#ffa600]/30 rounded-2xl p-8 shadow-xl flex flex-col hover:border-[#ffa600]/50 hover:shadow-[#ffa600]/20 transition-all duration-300">
+                    <div className="flex-shrink-0"><UsersIcon large /></div>
+                    <h3 className="text-2xl font-bold text-white mt-4">Become a Sponsor</h3>
+                    <p className="text-gray-300 mt-2 flex-grow">Partner with us to empower businesses and showcase your brand to a global audience.</p>
+                    <p className="text-gray-200 mt-4">Gain visibility and align with innovation.</p>
+                    <a href="https://flutterwave.com/pay/casjoepay" target="_blank" rel="noopener noreferrer" className="mt-6 block text-center bg-transparent border-2 border-[#ffa600] text-[#ffa600] hover:bg-[#ffa600] hover:text-[#000066] font-bold py-3 px-6 rounded-lg text-lg transition duration-300">
+                       Become a Sponsor
+                    </a>
+                </div>
             </div>
         </section>
 
         <CountdownTimer targetDate={targetDate} />
 
-        {/* Offer Header Section */}
+        {/* Offer Header Section - Simplified */}
         <header className="text-center pt-8 md:pt-12">
-          <div className="inline-block bg-[#ffa600] text-[#000066] font-bold px-4 py-1 rounded-full text-sm mb-4 animate-pulse">
+           <div className="inline-block bg-[#ffa600] text-[#000066] font-bold px-4 py-1 rounded-full text-sm mb-4 animate-pulse">
             Limited Time Founder's Offer - Ends December 7th, 2025
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Get Over <span className="text-[#ffa600]">₦1 Million ($700+)</span> Worth of Tools
-          </h1>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mt-2">for Just <span className="text-[#ffa600]">₦100,000 or $70</span></h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-200">
-            Pay once. Own forever. Build your business the smart way.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="w-full sm:w-auto bg-[#ffa600] hover:bg-[#ffb733] text-[#000066] font-bold py-4 px-10 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg shadow-[#ffa600]/30">
-              Claim Offer Now
-            </button>
-            <a href="https://flutterwave.com/pay/casjoepay" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-transparent border-2 border-[#ffa600] text-[#ffa600] hover:bg-[#ffa600] hover:text-[#000066] font-bold py-4 px-10 rounded-lg text-lg transition duration-300">
-               Become a Sponsor
-            </a>
-          </div>
-
            {/* Social Share Section */}
-           <div className="mt-12">
+           <div className="mt-8">
             <p className="text-gray-300 font-semibold">Share This Unbeatable Offer</p>
             <div className="flex items-center justify-center gap-4 mt-4">
               <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" className="inline-block bg-[#010175] p-3 rounded-full text-gray-300 hover:text-white transition-colors duration-300 hover:bg-[#1877F2]">
@@ -299,8 +300,8 @@ const CloudIcon = () => (
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
     </svg>
 );
-const SparklesIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+const SparklesIcon: React.FC<{large?: boolean}> = ({ large }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={large ? 'h-8 w-8 text-[#ffa600]' : 'h-6 w-6'} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.293 2.293a1 1 0 010 1.414L10 16l-4 4 4-4 5.293 5.293a1 1 0 010 1.414L10 21" />
     </svg>
 );
@@ -314,8 +315,8 @@ const CpuChipIcon = () => (
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V5m0 14v-1m-7 1h14a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
     </svg>
 );
-const UsersIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+const UsersIcon: React.FC<{large?: boolean}> = ({ large }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={large ? 'h-8 w-8 text-[#ffa600]' : 'h-6 w-6'} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.125-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.125-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
     </svg>
 );
@@ -326,14 +327,14 @@ const EventCalendarIcon = () => (
   </svg>
 );
 
-const ClockIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#ffa600]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+const ClockIcon: React.FC<{small?: boolean}> = ({ small }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={small ? 'h-5 w-5 text-[#ffa600]' : 'h-8 w-8 text-[#ffa600]'} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
-const ZoomIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#ffa600]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+const ZoomIcon: React.FC<{small?: boolean}> = ({ small }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={small ? 'h-5 w-5 text-[#ffa600]' : 'h-8 w-8 text-[#ffa600]'} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
     </svg>
 );
