@@ -6,6 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casjoe Limited Time Offer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        position: relative;
+        overflow-x: hidden;
+      }
+      #root {
+        position: relative;
+        z-index: 1;
+        isolation: isolate; /* Create a new stacking context */
+      }
+      @keyframes subtle-pan {
+        0% { transform: translate(0, 0) scale(1.5); }
+        50% { transform: translate(20px, -10px) scale(1.5); }
+        100% { transform: translate(0, 0) scale(1.5); }
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: -100px;
+        z-index: 0;
+        pointer-events: none;
+        background-image: 
+          radial-gradient(ellipse 50% 80% at 20% 25%, rgba(255, 166, 0, 0.1), transparent 70%),
+          radial-gradient(ellipse 50% 80% at 80% 75%, rgba(0, 100, 255, 0.15), transparent 70%);
+        filter: blur(100px);
+        animation: subtle-pan 25s ease-in-out infinite;
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {

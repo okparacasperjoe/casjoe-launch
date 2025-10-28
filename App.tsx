@@ -27,17 +27,41 @@ const BenefitItem: React.FC<{ icon: React.ReactNode; title: string; description:
     </div>
 );
 
+const SpeakerCard: React.FC<{ imageUrl: string; name: string; title: string; bio: string }> = ({ imageUrl, name, title, bio }) => (
+    <div className="bg-[#010175] rounded-2xl p-8 text-center shadow-lg hover:shadow-[#ffa600]/20 transform hover:-translate-y-2 transition-all duration-300 border border-[#ffa600]/20 hover:border-[#ffa600]/40 flex flex-col items-center">
+        <img src={imageUrl} alt={`Headshot of ${name}`} className="w-32 h-32 rounded-full object-cover border-4 border-[#ffa600]/50" />
+        <h3 className="mt-6 text-2xl font-bold text-white">{name}</h3>
+        <p className="mt-1 text-md font-semibold text-[#ffa600]">{title}</p>
+        <p className="mt-4 text-gray-300 text-sm flex-grow">{bio}</p>
+    </div>
+);
+
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLinkCopied, setIsLinkCopied] = useState(false);
   const targetDate = "2025-12-07T23:59:59";
 
-  const shareUrl = encodeURIComponent('https://casjoe.com/founders-offer');
+  const shareUrl = encodeURIComponent('https://event.casjoe.com');
   const shareTitle = encodeURIComponent("Don't miss the Casjoe Founder's Offer!");
   const shareTextTwitter = encodeURIComponent("Get over ₦1 Million ($700+) worth of business tools for a one-time payment with the Casjoe Founder's Offer!");
   const shareTextLinkedIn = encodeURIComponent("Get over ₦1 Million ($700+) worth of business tools for a one-time payment of just ₦100,000 ($70). This is a limited-time offer!");
   const shareHashtags = "Casjoe,FoundersOffer,BusinessTools";
+
+  const speakers = [
+    {
+      name: "Dr. Evelyn Reed",
+      title: "AI & Business Strategist",
+      bio: "Leading expert in leveraging artificial intelligence for business growth. Dr. Reed's insights help companies navigate digital transformation with strategic clarity.",
+      imageUrl: "https://i.pravatar.cc/150?u=evelynreed"
+    },
+    {
+      name: "Michael Chen",
+      title: "Fintech Innovator & CEO",
+      bio: "A visionary entrepreneur who has built multiple successful fintech platforms from the ground up. Michael is passionate about democratizing financial technology.",
+      imageUrl: "https://i.pravatar.cc/150?u=michaelchen"
+    }
+  ];
 
   const features = [
     { title: "Casjoe ERP Platform", description: "Manage your entire business operations", value: "Worth: $120/year", icon: <BriefcaseIcon /> },
@@ -59,7 +83,7 @@ const App: React.FC = () => {
   ];
 
   const handleCopyLink = () => {
-    const linkToCopy = 'https://casjoe.com/founders-offer';
+    const linkToCopy = 'https://event.casjoe.com';
     navigator.clipboard.writeText(linkToCopy).then(() => {
       setIsLinkCopied(true);
       setTimeout(() => {
@@ -131,6 +155,19 @@ const App: React.FC = () => {
                     </a>
                 </div>
             </div>
+        </section>
+
+        {/* Speakers Section */}
+        <section id="speakers" className="py-16">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold">Meet Our Speakers</h2>
+            <p className="mt-3 text-lg text-gray-300">Learn from industry leaders at the forefront of innovation.</p>
+          </div>
+          <div className="mt-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            {speakers.map((speaker, index) => (
+              <SpeakerCard key={index} {...speaker} />
+            ))}
+          </div>
         </section>
 
         <CountdownTimer targetDate={targetDate} />
